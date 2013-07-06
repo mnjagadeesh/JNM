@@ -9,7 +9,7 @@ alias ls='ls --color=auto'
 alias reboot="CheckMounts.sh; sudo reboot"
 alias poweroff="CheckMounts.sh; sudo poweroff"
 alias halt="sudo halt"
-alias Backup="sudo PerformanceBackup.sh -d ~/.backups"
+alias Backup="sudo PerformanceBackup.sh -e /swapfile -d ~/.backups"
 alias Access="sudo Access.sh"
 alias AccessEnd="sudo AccessEnd.sh"
 alias UpdateRepos="sudo UpdateRepos.sh"
