@@ -15,6 +15,8 @@ alias AccessEnd="sudo AccessEnd.sh"
 alias UpdateRepos="sudo UpdateRepos.sh"
 alias vbox="sudo vbox.sh"
 alias ClamDo="sudo clam.sh"
+alias emacs="emacsclient -nw"
+alias weechat="weechat-curses"
 PS1='[\u@\h \W]\$ '
 PATH=$PATH:/home/evilclown/bin
 archey3
