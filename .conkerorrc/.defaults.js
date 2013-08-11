@@ -1,10 +1,10 @@
 // modules
 require("new-tabs.js");
-require("session.js"); //enable sessions
+require("session.js");
 require("favicon");
 
 // preferences
-download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
+download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND; //download in background buffer
 session_pref('browser.history_expire_days', 7); //history expire 7 days
 url_completion_use_history = true;  //Show history in url completion
 read_buffer_show_icons = true; //show favicons in the minibuffer completions list
@@ -45,9 +45,9 @@ add_hook("mode_line_hook", mode_line_adder(downloads_status_widget)); //show the
 add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true); //enable favicons in the mode-line
 
 function darken_page (I) {
-    var styles='* { background: black !important; color: grey !important; }'+
-        ':link, :link * { color: #4986dd !important; }'+
-        ':visited, :visited * { color: #d75047 !important; }';
+    var styles='* { background: #242424 !important; color: #474747 !important; }'+
+        ':link, :link * { color: #17B2FF !important; }'+
+        ':visited, :visited * { color: #965d98 !important; }';
     var document = I.buffer.document;
     var newSS=document.createElement('link');
     newSS.rel='stylesheet';
@@ -57,3 +57,5 @@ function darken_page (I) {
 
 interactive("darken-page", "Darken the page in an attempt to save your eyes.",
             darken_page);
+
+define_key(content_buffer_normal_keymap, "C-d", "darken-page");
