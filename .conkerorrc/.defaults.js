@@ -1,19 +1,10 @@
 // modules
-require("new-tabs.js");
-require("session.js");
-require("favicon");
+require("new-tabs.js"); //enable tabs
+require("session.js"); //enable sessions
+require("favicon"); //enabe favicons
 
-// preferences
-download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND; //download in background buffer
-session_pref('browser.history_expire_days', 7); //history expire 7 days
-url_completion_use_history = true;  //Show history in url completion
-read_buffer_show_icons = true; //show favicons in the minibuffer completions list
-
-// default directory for downloads and sell commands.
-cwd = get_home_directory();
-cwd.append("Downloads")
-
-// History-url
+//------------------Start functions----------------------------------
+// history-url
 define_browser_object_class(
     "history-url", null, 
     function (I, prompt) {
@@ -36,14 +27,7 @@ interactive("find-url-from-history-new-buffer",
 define_key(content_buffer_normal_keymap, "h", "find-url-from-history-new-buffer");
 define_key(content_buffer_normal_keymap, "H", "find-url-from-history");
 
-//mod line hooks
-remove_hook("mode_line_hook", mode_line_adder(clock_widget)); //disalbe the clock
-add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true); //shows how many buffers are open and which one is currently selected.
-add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true); //shows how many buffers are loading.
-remove_hook("mode_line_hook", mode_line_adder(current_buffer_scroll_position_widget)); //removes the scroll position (#,#)
-add_hook("mode_line_hook", mode_line_adder(downloads_status_widget)); //show the active download count.
-add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true); //enable favicons in the mode-line
-
+// Modified darken-page
 function darken_page (I) {
     var styles='* { background: #242424 !important; color: #474747 !important; }'+
         ':link, :link * { color: #17B2FF !important; }'+
@@ -59,3 +43,22 @@ interactive("darken-page", "Darken the page in an attempt to save your eyes.",
             darken_page);
 
 define_key(content_buffer_normal_keymap, "C-d", "darken-page");
+//------------------End functions----------------------------------
+
+// preferences
+download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND; //Open a new backgroud buffer for downloads.
+session_pref('browser.history_expire_days', 7); //history expire 7 days
+url_completion_use_history = true;  //Show history in url completion
+read_buffer_show_icons = true; //show favicons in the minibuffer completions list
+
+// set the defaut directory for downloads and sell commands to ~/Downloads
+cwd = get_home_directory();
+cwd.append("Downloads")
+
+//mode line hooks
+remove_hook("mode_line_hook", mode_line_adder(clock_widget)); //disalbe the clock.
+remove_hook("mode_line_hook", mode_line_adder(current_buffer_scroll_position_widget)); //disable the scroll position.
+add_hook("mode_line_hook", mode_line_adder(buffer_count_widget), true); //shows how many buffers are open and which one is currently selected.
+add_hook("mode_line_hook", mode_line_adder(loading_count_widget), true); //shows how many buffers are loading.
+add_hook("mode_line_hook", mode_line_adder(downloads_status_widget)); //show the active download count.
+add_hook("mode_line_hook", mode_line_adder(buffer_icon_widget), true); //enable favicons.
