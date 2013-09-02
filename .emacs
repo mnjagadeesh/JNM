@@ -6,13 +6,11 @@
 )
 
 (custom-set-faces
- '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 80 :width normal))))     ;Set the buffer font 
+;; '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 80 :width normal))))     ;Set the buffer font 
 ;; '(mode-line ((t (:background "#17B2FF" :foreground "black" :box (:line-width -1 :style released-button)))))
 ;; '(mode-line ((t(:foreground "#17B2FF" :box (:line-width -1 :style released-button)))))
  '(mode-line ((t(:foreground "#17B2FF"))))
 )
-
-;; Adding major modes
 ;; rst mode
 (setq auto-mode-alist
       (append '(("\\.txt$" . rst-mode)
@@ -23,9 +21,14 @@
 (add-to-list 'auto-mode-alist
   '("\\.rtf$" . rtf-mode))
 
+;; Adding major modes
 (add-to-list 'load-path "~/.emacs.d/lisp/")     ;Add custom major mode .el path
+(setq ispell-program-name "aspell")
 (require 'ispell)
 (require 'linum+)
 (require 'gnus)
-(global-linum-mode 1)     ;default line numbers
 
+(dolist (hook '(text-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
+    (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode -1))))
