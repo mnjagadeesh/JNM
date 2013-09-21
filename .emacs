@@ -1,16 +1,12 @@
-(defun fontify-frame (frame)
-(set-frame-parameter frame 'font "DejaVu Sans Mono-10")
-)
-
-(custom-set-variables
-)
+(set-default-font "DejaVu Sans Mono-16")
 
 (custom-set-faces
-;; '(default ((t (:family "DejaVu Sans Mono" :foundry "unknown" :slant normal :weight normal :height 80 :width normal))))     ;Set the buffer font 
-;; '(mode-line ((t (:background "#17B2FF" :foreground "black" :box (:line-width -1 :style released-button)))))
-;; '(mode-line ((t(:foreground "#17B2FF" :box (:line-width -1 :style released-button)))))
- '(mode-line ((t(:foreground "#17B2FF"))))
-)
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(mode-line ((t (:foreground "#17B2FF")))))
+
 ;; rst mode
 (setq auto-mode-alist
       (append '(("\\.txt$" . rst-mode)
@@ -21,14 +17,30 @@
 (add-to-list 'auto-mode-alist
   '("\\.rtf$" . rtf-mode))
 
+;; org-mode
+(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+(setq org-todo-keywords
+  '((sequence "TODO" "|" "IN PROCESS" "TESTING" "DONE" "CANCELED" "DELEGATED")))
+
 ;; Adding major modes
 (add-to-list 'load-path "~/.emacs.d/lisp/")     ;Add custom major mode .el path
 (setq ispell-program-name "aspell")
 (require 'ispell)
 (require 'linum+)
-(require 'gnus)
+(global-linum-mode 1)
 
 (dolist (hook '(text-mode-hook))
       (add-hook hook (lambda () (flyspell-mode 1))))
     (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
       (add-hook hook (lambda () (flyspell-mode -1))))
+
+(when (display-graphic-p)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(custom-enabled-themes (quote (misterioso)))))
