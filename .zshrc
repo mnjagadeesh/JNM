@@ -19,8 +19,8 @@ promptinit
 
 # This will change the zsh prompt to what I wnat it to be.
 
-PROMPT=$'%{\e[0;31m%}(%{\e[0m%}%n%{\e[0;31m%}@%{\e[0m%}%m%{\e[0;31m%})%{\e[0m%} %{\e[0;31m%}(%{\e[0m%}%W %T%{\e[0;31m%})%{\e[0m%}%# '
-RPROMPT=$'%{\e[0;31m%}(%{\e[0m%}%~%{\e[0;31m%})%{\e[0m%}'
+PROMPT=$'%{\e[0;31m%}(%{\e[32m%}%n%{\e[0;31m%}@%{\e[32m%}%m%{\e[0;31m%})(%{\e[32m%}%W %T%{\e[0;31m%})%{\e[0m%}%# '
+RPROMPT=$'%{\e[0;31m%}(%{\e[32m%}%~%{\e[0;31m%})%{\e[0m%}'
 
 
 zstyle ':completion:*' menu select
