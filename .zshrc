@@ -3,18 +3,26 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=10000
 setopt appendhistory autocd extendedglob
-setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+setopt HIST_VERIFY
+setopt EXTENDED_HISTORY
+
 bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/evilclown/.zshrc'
 
-autoload -Uz compinit promptinit
+autoload -U compinit promptinit
 compinit
 promptinit
-# End of lines added by compinstall
 
-prompt walters
+# This will change the zsh prompt to what I wnat it to be.
+
+PROMPT=$'%{\e[0;31m%}(%{\e[0m%}%n%{\e[0;31m%}@%{\e[0m%}%m%{\e[0;31m%})%{\e[0m%} %{\e[0;31m%}(%{\e[0m%}%W %T%{\e[0;31m%})%{\e[0m%}%# '
+RPROMPT=$'%{\e[0;31m%}(%{\e[0m%}%~%{\e[0;31m%})%{\e[0m%}'
+
+
 zstyle ':completion:*' menu select
 
 # create a zkbd compatible hash;
