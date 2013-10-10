@@ -23,7 +23,19 @@
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
 (setq org-todo-keywords
-  '((sequence "TODO" "|" "IN PROCESS" "TESTING" "DONE" "CANCELED" "DELEGATED")))
+  '((sequence "TODO" "CANCELED" "|" "IN PROCESS" "TESTING" "DONE" "DELEGATED")))
+(require 'org-latex)
+(setq org-export-latex-listings 'minted)
+(add-to-list 'org-export-latex-packages-alist '("" "minted"))
+(setq org-src-fontify-natively t)
+
+;; visual-basic-mode
+(autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
+(add-to-list 'auto-mode-alist '("\\.vbs\\'" . visual-basic-mode)) ; VBscript
+
+(autoload 'vbnet-mode "vbnet-mode" "Mode for editing VB.NET code." t)
+(setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vb\\)$" .
+                              vbnet-mode)) auto-mode-alist))
 
 ;; Adding major modes
 (add-to-list 'load-path "~/.emacs.d/lisp/")     ;Add custom major mode .el path
