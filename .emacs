@@ -44,10 +44,31 @@
 (require 'linum+)
 (global-linum-mode 1)
 
-(dolist (hook '(text-mode-hook))
-      (add-hook hook (lambda () (flyspell-mode 1))))
-    (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
-      (add-hook hook (lambda () (flyspell-mode -1))))
+;; (dolist (hook '(text-mode-hook))
+;;       (add-hook hook (lambda () (flyspell-mode 1))))
+;;     (dolist (hook '(change-log-mode-hook log-edit-mode-hook))
+;;       (add-hook hook (lambda () (flyspell-mode -1))))
+
+;; Adding auto complete
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp//ac-dict")
+(ac-config-default)
+
+;; ac-ispell
+;; Completion words longer than 4 characters
+(custom-set-variables
+'(ac-ispell-requires 4))
+
+(eval-after-load "auto-complete"
+'(progn
+(ac-ispell-setup)))
+
+(defun my/enable-ac-ispell ()
+(add-to-list 'ac-sources 'ac-source-ispell))
+
+(add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
+(add-hook 'mail-mode-hook 'my/enable-ac-ispell)
 
 (when (display-graphic-p)
   (custom-set-variables
