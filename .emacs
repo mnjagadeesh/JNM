@@ -57,18 +57,20 @@
 
 ;; ac-ispell
 ;; Completion words longer than 4 characters
+(require 'ac-ispell)
 (custom-set-variables
 '(ac-ispell-requires 4))
 
 (eval-after-load "auto-complete"
 '(progn
-(ac-ispell-setup)))
+(ac-ispell-ac-setup)))
 
 (defun my/enable-ac-ispell ()
 (add-to-list 'ac-sources 'ac-source-ispell))
 
 (add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
 (add-hook 'mail-mode-hook 'my/enable-ac-ispell)
+(add-hook 'org-mode-hook 'ac-ispell-ac-setup)
 
 (when (display-graphic-p)
   (custom-set-variables
