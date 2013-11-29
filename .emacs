@@ -64,12 +64,6 @@
 (eval-after-load "auto-complete"
 '(progn
 (ac-ispell-ac-setup)))
-
-(defun my/enable-ac-ispell ()
-(add-to-list 'ac-sources 'ac-source-ispell))
-
-(add-hook 'git-commit-mode-hook 'my/enable-ac-ispell)
-(add-hook 'mail-mode-hook 'my/enable-ac-ispell)
 (add-hook 'org-mode-hook 'ac-ispell-ac-setup)
 
 (when (display-graphic-p)
