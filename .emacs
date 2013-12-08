@@ -72,7 +72,7 @@
 (custom-set-variables
  '(completion-auto-show (quote ((t . completion-show-menu)))))
 
-;; enable color them in graphics mode
+;; enable color theme in graphics mode
 (when (display-graphic-p)
   (custom-set-variables
    '(custom-enabled-themes (quote (misterioso)))))
