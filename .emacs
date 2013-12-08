@@ -1,4 +1,4 @@
-;; General customization
+;; general customization
 (set-default-font "DejaVu Sans Mono-16")
 (tool-bar-mode -1)
 (column-number-mode 0)
@@ -24,12 +24,12 @@
 (setq auto-mode-alist
       (append '(("\\.rst$" . rst-mode)
                 ("\\.rest$" . rst-mode)) auto-mode-alist))
-;; rtf-mode
+;; rtf mode
 (autoload 'rtf-mode "rtf-mode" "RTF mode" t)
 (add-to-list 'auto-mode-alist
   '("\\.rtf$" . rtf-mode))
 
-;; org-mode
+;; org mode
 (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
 (add-hook 'org-mode-hook 'turn-on-predictive-mode)
 (global-set-key "\C-cl" 'org-store-link)
@@ -47,7 +47,7 @@
 (setq ispell-program-name "aspell")
 (require 'ispell)
 
-;; visual-basic-modes
+;; visual basic modes
 (autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic mode." t)
 (add-to-list 'auto-mode-alist '("\\.vbs\\'" . visual-basic-mode)) ; VBscript
 (autoload 'vbnet-mode "vbnet-mode" "Mode for editing VB.NET code." t)
@@ -66,7 +66,6 @@
      (add-to-list 'load-path "~/.emacs.d/predictive/latex/")
      (add-to-list 'load-path "~/.emacs.d/predictive/texinfo/")
      (add-to-list 'load-path "~/.emacs.d/predictive/html/")
-     ;; load predictive package
      (require 'predictive)
 
 ;; predictive mode customization
