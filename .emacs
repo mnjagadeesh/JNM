@@ -54,7 +54,7 @@
 (setq auto-mode-alist (append '(("\\.\\(frm\\|bas\\|cls\\|vb\\)$" .
                               vbnet-mode)) auto-mode-alist))
 
-;; Adding auto complete
+;; auto complete mode
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp//ac-dict")
